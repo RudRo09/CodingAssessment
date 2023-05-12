@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # my apps
+    'accounts',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -69,6 +72,10 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'coding_assessment.wsgi.application'
+
+
+# setting up custom user model
+AUTH_USER_MODEL = 'accounts.Account'
 
 
 # Database
