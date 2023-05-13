@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-n-voo&x!l+g_)hvnd^n1ryajquneho#rt1kkryf77svu1gbt$e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     # my apps
     'accounts',
     'rest_framework',
+    'knox',
+    'rest_framework.authtoken',
+
 ]
 
 MIDDLEWARE = [
@@ -76,6 +79,22 @@ WSGI_APPLICATION = 'coding_assessment.wsgi.application'
 
 # setting up custom user model
 AUTH_USER_MODEL = 'accounts.Account'
+
+
+# TokenAuthentication
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ],
+
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+
+}
 
 
 # Database
